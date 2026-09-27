@@ -1,0 +1,15 @@
+cmake_minimum_required(VERSION 3.17) 
+
+
+add_executable(Test TestInverted_Index.cpp ${MY_SRC_DIR}/inverted_index.cpp)
+
+
+target_include_directories(Test PRIVATE ${MY_INCLUDE_DIR}) #где искать заголовочные файлы
+target_link_libraries(Test PRIVATE gtest_main)
+
+include(GoogleTest)
+gtest_discover_tests(Test) #находит все тесты в исполняемом файле
+
+
+
+

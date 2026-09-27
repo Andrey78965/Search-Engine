@@ -1,0 +1,2 @@
+add_subdirectory(testInverted)
+add_subdirectory(testSearch)
