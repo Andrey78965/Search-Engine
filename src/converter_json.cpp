@@ -12,7 +12,7 @@ void ConverterJSON::Message()
 }
 std::vector<std::string> ConverterJSON::GetTextDocuments()
 {
-    std::ifstream conf("../resources/config/config.json");
+    std::ifstream conf("./resources/config/config.json");
     if (!conf.is_open())
     {
         throw std::runtime_error("config file is missing");
@@ -31,7 +31,9 @@ std::vector<std::string> ConverterJSON::GetTextDocuments()
     std::vector<std::string> textDocuments;
     for (int i = 0; i < (int)numResources; i++)
     {
+        
         std::string filePath = file["files"][i];
+        
 
         std::ifstream data(filePath);
         if (data.is_open())
@@ -49,7 +51,7 @@ std::vector<std::string> ConverterJSON::GetTextDocuments()
 
 int ConverterJSON::GetResponsesLimit()
 {
-    std::ifstream conf("../resources/config/config.json");
+    std::ifstream conf("./resources/config/config.json");
     nlohmann::json file;
     conf >> file;
     if (file["config"].contains("max_responses"))
@@ -63,7 +65,7 @@ int ConverterJSON::GetResponsesLimit()
 
 std::vector<std::string> ConverterJSON::GetRequests()
 {
-    std::ifstream req("../resources/config/requests.json");
+    std::ifstream req("./resources/config/requests.json");
     nlohmann::json file;
     req >> file;
     std::vector<std::string> requests;
@@ -103,7 +105,7 @@ void ConverterJSON::putAnswers(std::vector<std::vector<RelativeIndex>> answers)
 {
     // чистим файл
     std::ofstream ofs;
-    ofs.open("../resources/config/answers.json", std::ofstream::trunc);
+    ofs.open("./resources/config/answers.json", std::ofstream::trunc);
     ofs.close();
 
     nlohmann::json answer;
@@ -139,7 +141,7 @@ void ConverterJSON::putAnswers(std::vector<std::vector<RelativeIndex>> answers)
     nlohmann::json file_content;
     file_content["answers"] = answer;
 
-    std::ofstream ofs1("../resources/config/answers.json");
+    std::ofstream ofs1("./resources/config/answers.json");
     ofs1 << std::setw(4) << file_content;
     ofs1.close();
 };
